@@ -38,7 +38,7 @@
     <string name="dialog_title_new_version">Новая версия</string>
     <string name="dialog_title_language">Выбор языка</string>
     <string name="dialog_message">Для того чтобы получать Push уведомления об изменениях в статусе выбранного рейса, удерживайте выбранный рейс до вибрации телефона. Чтобы отключить отслеживание повторно удержите рейс.</string>
-    <string name="dialog_message_new_version">В магазине приложений Google Play появилась новая версия. Обновите приложение аэропотр Ростов-на-Дону до последней версии.</string>
+    <string name="dialog_message_new_version">В магазине приложений Google Play появилась новая версия. Обновите приложение аэропорт Ростов-на-Дону до последней версии.</string>
     <string name="dialog_button_positive">Больше не показывать</string>
     <string name="dialog_button_positive_update">Обновить</string>
     <string name="dialog_button_positive_language">Сохранить</string>

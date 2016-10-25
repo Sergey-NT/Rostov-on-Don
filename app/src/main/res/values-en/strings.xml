@@ -32,7 +32,7 @@
     <string name="menu_info_title">Additional Information</string>
     <string name="menu_ads_ads_disable_recovery_true">Purchase restored.</string>
     <string name="button_license">Display licenses of third-party libraries</string>
-    <string name="info_route_note_desc">* - Samara local time in brackets</string>
+    <string name="info_route_note_desc">* - Rostov-on-Don local time in brackets</string>
     <string name="info_check_in_desc">Check-in</string>
     <string name="info_boarding_desc">Boarding</string>
     <string name="info_boarding_end_desc">End:</string>
