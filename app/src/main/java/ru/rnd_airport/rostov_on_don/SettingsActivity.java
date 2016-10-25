@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity implements BillingProces
 
     private static final int LAYOUT = R.layout.activity_settings;
 
-    private static final String PRODUCT_ID = "rnd-airport.ru.ads.disable";
+    private static final String PRODUCT_ID = "rnd_airport.ru.ads.disable";
     private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArbEVwIKEj9jE1anWnVaXco6iaKA3p17tvOQGckwnTk2/gWrJrIiTNepo6dEI2yzj+Tcfh9+2ORlMRAwx/KBTVWIlPLpd4BMazzB9zi2MpxWsMVefIbRfDJCQURkqV72Fd7RHJQbKsIPQoIlvQDFEg9fpXO9CHTaD5Z8PjocNPaMX3W87boi5uJyqG68gDYFA6knuxA252uz0GYtCRPM7vFPDPx5tqjqptAIWcd31X0dd/uHA3/z+75OSz8xMJYIKkdthsMK++8k5hFx+5OwIyh96ZZq07LQiAjMmBSAc8VCbplBT7+ljF/2gpWvoNhH9fkIipKDIVRW5agqhsHgjbwIDAQAB";
     private static final String MERCHANT_ID = "09670604812027174402";
 
