@@ -1,5 +1,6 @@
 package ru.rnd_airport.rostov_on_don;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,10 +25,12 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 import ru.rnd_airport.rostov_on_don.Fragment.LanguageFragment;
+import ru.rnd_airport.rostov_on_don.Fragment.ThemeDialogFragment;
 
 public class SettingsActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler {
 
     private static final int LAYOUT = R.layout.activity_settings;
+    private static final int APP_THEME = R.style.AppDefault;
 
     private static final String PRODUCT_ID = "rnd_airport.ru.ads.disable";
     private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArbEVwIKEj9jE1anWnVaXco6iaKA3p17tvOQGckwnTk2/gWrJrIiTNepo6dEI2yzj+Tcfh9+2ORlMRAwx/KBTVWIlPLpd4BMazzB9zi2MpxWsMVefIbRfDJCQURkqV72Fd7RHJQbKsIPQoIlvQDFEg9fpXO9CHTaD5Z8PjocNPaMX3W87boi5uJyqG68gDYFA6knuxA252uz0GYtCRPM7vFPDPx5tqjqptAIWcd31X0dd/uHA3/z+75OSz8xMJYIKkdthsMK++8k5hFx+5OwIyh96ZZq07LQiAjMmBSAc8VCbplBT7+ljF/2gpWvoNhH9fkIipKDIVRW5agqhsHgjbwIDAQAB";
@@ -43,7 +46,10 @@ public class SettingsActivity extends AppCompatActivity implements BillingProces
     @Override
     @SuppressWarnings("ConstantConditions")
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(R.style.AppDefault);
+        settings = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
+        int appTheme = settings.getInt(Constants.APP_PREFERENCES_APP_THEME, APP_THEME);
+        setTheme(appTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(LAYOUT);
 
@@ -59,7 +65,6 @@ public class SettingsActivity extends AppCompatActivity implements BillingProces
         Button btnFeedback = (Button) findViewById(R.id.btnFeedback);
         CheckBox checkBoxUpdate = (CheckBox) findViewById(R.id.checkBoxUpdate);
 
-        settings = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
         Boolean update = settings.getBoolean(Constants.APP_PREFERENCES_CANCEL_CHECK_VERSION, false);
         String price = settings.getString(Constants.APP_PREFERENCES_ADS_DISABLE_PRICE, "");
         String buttonPriceText = getString(R.string.button_ads_disable) + " " + price;
@@ -243,14 +248,24 @@ public class SettingsActivity extends AppCompatActivity implements BillingProces
                 .setAction(getString(R.string.analytics_action_feedback))
                 .build());
 
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("market://details?id=ru.rnd_airport.rostov_on_don"));
-        startActivity(intent);
+        Uri uri = Uri.parse("market://details?id=" + getPackageName());
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            showToast(getString(R.string.toast_error_google_play));
+        }
     }
 
-    public void bntLanguageOnClick (View view) {
+    public void btnLanguageOnClick (View view) {
         FragmentManager manager = getSupportFragmentManager();
         LanguageFragment dialogFragment = new LanguageFragment();
+        dialogFragment.show(manager, "dialog");
+    }
+
+    public void btnThemeOnClick (View view) {
+        FragmentManager manager = getSupportFragmentManager();
+        ThemeDialogFragment dialogFragment = new ThemeDialogFragment();
         dialogFragment.show(manager, "dialog");
     }
 
