@@ -7,8 +7,8 @@ android {
         applicationId "ru.rnd_airport.rostov_on_don"
         minSdkVersion 10
         targetSdkVersion 24
-        versionCode 6
-        versionName "1.0.2"
+        versionCode 7
+        versionName "1.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
