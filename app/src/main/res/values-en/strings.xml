@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">airport Rostov-on-Don</string>
+    <string name="app_name">Platov</string>
     <string name="about_developer">Developer: <a href="http://vk.com/id5170658" title="Сергей Ухарский">Сергей Ухарский</a></string>
     <string name="about_version">Version:</string>
     <string name="button_ads_disable">Disable Ads:</string>
@@ -9,7 +9,7 @@
     <string name="button_repeat">Try again</string>
     <string name="dialog_title_new_version">New version</string>
     <string name="dialog_title">Info</string>
-    <string name="about_text_content">Data source: <a href="http://rnd-airport.ru" title="rnd-airport.ru">rnd-airport.ru</a></string>
+    <string name="about_text_content">Data source: <a href="http://platov.aero" title="platov.aero">platov.aero</a></string>
     <string name="button_ads_disable_recovery">Restore purchase</string>
     <string name="tabs_item_arrival">Arrival</string>
     <string name="tabs_item_departure">Departure</string>
@@ -28,7 +28,7 @@
     <string name="dialog_button_positive_update">Update</string>
     <string name="dialog_button_negative">Remind me later</string>
     <string name="dialog_button_positive">Do not show</string>
-    <string name="menu_title">airport Rostov-on-Don</string>
+    <string name="menu_title">Platov</string>
     <string name="menu_info_title">Additional Information</string>
     <string name="menu_ads_ads_disable_recovery_true">Purchase restored.</string>
     <string name="button_license">Display licenses of third-party libraries</string>
@@ -58,7 +58,7 @@
     <string name="menu_billing_not_initialized">Billing is not initialized.</string>
     <string name="about_text">The following icons are used in the application: Airplane free icon made by <a href="http://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></string>
     <string name="dialog_message">In order to receive Push notifications about changes in the status of the selected flight, long tap the selected flight until the phone vibrates. To disable monitoring again long tap the flight.</string>
-    <string name="dialog_message_new_version">In the Google Play has a new version airport Rostov-on-Don. Update application to the latest version.</string>
+    <string name="dialog_message_new_version">In the Google Play has a new version Platov. Update application to the latest version.</string>
     <string name="info_airline_desc">Airline</string>
     <string name="menu_ads_disable_toast">Pay off display advertising was successful.</string>
     <string name="menu_ads_ads_disable_recovery_false">You have not made a purchase off display advertising.</string>

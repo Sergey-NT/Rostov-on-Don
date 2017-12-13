@@ -444,7 +444,7 @@ public class Fragment extends android.support.v4.app.Fragment {
         progressDialog.setCancelable(true);
         progressDialog.show();
 
-        String url = "http://rnd-airport.ru/1linetablo.card.5.19.php?0&0&"+direction;
+        String url = "http://platov.aero/1linetablo.card.5.19.php?0&0&"+direction;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
