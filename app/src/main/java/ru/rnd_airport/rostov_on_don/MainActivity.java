@@ -1,5 +1,6 @@
 package ru.rnd_airport.rostov_on_don;
 
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -282,21 +283,27 @@ public class MainActivity extends AppCompatActivity {
                         switch (position) {
                             case 1:
                                 drawerResultRight.closeDrawer();
-                                Intent intentKoltsovo = new Intent(Intent.ACTION_VIEW);
-                                intentKoltsovo.setData(Uri.parse("market://details?id=ru.koltsovo.www.koltsovo"));
-                                startActivity(intentKoltsovo);
+                                try {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getString(R.string.package_koltsovo))));
+                                } catch (ActivityNotFoundException e) {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getString(R.string.package_koltsovo))));
+                                }
                                 return true;
                             case 2:
                                 drawerResultRight.closeDrawer();
-                                Intent intentKurumoch = new Intent(Intent.ACTION_VIEW);
-                                intentKurumoch.setData(Uri.parse("market://details?id=ru.samara.airport.www.kurumoch"));
-                                startActivity(intentKurumoch);
+                                try {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getString(R.string.package_kurumoch))));
+                                } catch (ActivityNotFoundException e) {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getString(R.string.package_kurumoch))));
+                                }
                                 return true;
                             case 3:
                                 drawerResultRight.closeDrawer();
-                                Intent intentStrigino = new Intent(Intent.ACTION_VIEW);
-                                intentStrigino.setData(Uri.parse("market://details?id=ru.airportnn.www.strigino"));
-                                startActivity(intentStrigino);
+                                try {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getString(R.string.package_strigino))));
+                                } catch (ActivityNotFoundException e) {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getString(R.string.package_strigino))));
+                                }
                                 return true;
                         }
                         return false;
