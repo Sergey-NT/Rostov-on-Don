@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">airport Rostov-on-Don</string>
+    <string name="app_name">Platov</string>
     <string name="about_developer">Developer: <a href="http://vk.com/id5170658" title="Сергей Ухарский">Сергей Ухарский</a></string>
     <string name="about_version">Version:</string>
     <string name="button_ads_disable">Disable Ads:</string>
@@ -9,7 +9,7 @@
     <string name="button_repeat">Try again</string>
     <string name="dialog_title_new_version">New version</string>
     <string name="dialog_title">Info</string>
-    <string name="about_text_content">Data source: <a href="http://rnd-airport.ru" title="rnd-airport.ru">rnd-airport.ru</a></string>
+    <string name="about_text_content">Data source: <a href="http://old.rov.aero/" title="old.rov.aero">old.rov.aero</a></string>
     <string name="button_ads_disable_recovery">Restore purchase</string>
     <string name="tabs_item_arrival">Arrival</string>
     <string name="tabs_item_departure">Departure</string>
@@ -28,7 +28,7 @@
     <string name="dialog_button_positive_update">Update</string>
     <string name="dialog_button_negative">Remind me later</string>
     <string name="dialog_button_positive">Do not show</string>
-    <string name="menu_title">airport Rostov-on-Don</string>
+    <string name="menu_title">Platov</string>
     <string name="menu_info_title">Additional Information</string>
     <string name="menu_ads_ads_disable_recovery_true">Purchase restored.</string>
     <string name="button_license">Display licenses of third-party libraries</string>

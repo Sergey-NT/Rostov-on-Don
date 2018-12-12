@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -20,6 +21,17 @@ import ru.rnd_airport.rostov_on_don.R;
 public class AppFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "FirebaseMessaging";
+
+    @Override
+    public void onNewToken(String token) {
+        sendRegistrationToSettings(token);
+    }
+
+    private void sendRegistrationToSettings(String token) {
+        SharedPreferences settings;
+        settings = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
+        settings.edit().putString(Constants.APP_TOKEN, token).apply();
+    }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {

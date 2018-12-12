@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">аэропорт Ростов-на-Дону</string>
+    <string name="app_name">Платов</string>
     <string name="tabs_item_arrival">Прибытие</string>
     <string name="tabs_item_departure">Отправление</string>
     <string name="tabs_item_search">Поиск авиабилетов</string>
@@ -18,7 +18,7 @@
     <string name="about_text">В приложении используются следующие иконки:
         Airplane free icon made by <a href="http://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
     </string>
-    <string name="about_text_content">Источник данных: <a href="http://rnd-airport.ru" title="rnd-airport.ru">rnd-airport.ru</a></string>
+    <string name="about_text_content">Источник данных: <a href="http://old.rov.aero/" title="old.rov.aero">old.rov.aero</a></string>
     <string name="info_route_desc">Маршрут</string>
     <string name="info_route_note_desc">* - в скобках указано время Ростова-на-Дону</string>
     <string name="info_airline_desc">Авиакомпания</string>
@@ -57,7 +57,7 @@
     <string name="menu_koltsovo_subtitle">г.Екатеринбург</string>
     <string name="menu_info_title">Дополнительная информация</string>
     <string name="menu_info_subtitle">Рейс:</string>
-    <string name="menu_title">аэропорт Ростов-на-Дону</string>
+    <string name="menu_title">Платов</string>
     <string name="menu_title_right">Онлайн табло аэропорта</string>
     <string name="menu_ads_disable_toast">Оплата за отключение показа рекламы прошла успешно.</string>
     <string name="menu_billing_not_initialized">Биллинг не инициализирован.</string>

@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.IntentCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -125,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initToolbar(int title) {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             toolbar.setTitle(title);
             setSupportActionBar(toolbar);
@@ -134,11 +133,11 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressWarnings("ConstantConditions")
     private void initTabs() {
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.viewPager);
         TabsPagerFragmentAdapter adapter = new TabsPagerFragmentAdapter(getApplicationContext(), planeNumber, direction, getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -337,18 +336,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        // No call for super(). Bug on API Level > 11.
-    }
-
     @SuppressWarnings("ConstantConditions")
     public void initAd(int layoutId) {
         adView = new AdView(this);
         adView.setAdUnitId(getString(R.string.ad_view_banner));
         adView.setAdSize(AdSize.SMART_BANNER);
 
-        LinearLayout layout = (LinearLayout)findViewById(layoutId);
+        LinearLayout layout = findViewById(layoutId);
         layout.addView(adView);
 
         AdRequest request = new AdRequest.Builder()
@@ -415,7 +409,7 @@ public class MainActivity extends AppCompatActivity {
     private void changeActivityAppTheme() {
         finish();
         final Intent intent = getIntent();
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 

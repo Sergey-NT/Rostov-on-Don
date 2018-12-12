@@ -38,10 +38,10 @@ public class AboutActivity extends AppCompatActivity {
 
         initToolbar(R.string.app_name, R.string.menu_about);
 
-        TextView tv1 = (TextView) findViewById(R.id.tvIconsInfo);
-        TextView tv2 = (TextView) findViewById(R.id.tvAndroidDeveloper);
-        TextView tv3 = (TextView) findViewById(R.id.tvInfoContent);
-        TextView tvAppVersion = (TextView) findViewById(R.id.tvAppVersion);
+        TextView tv1 = findViewById(R.id.tvIconsInfo);
+        TextView tv2 = findViewById(R.id.tvAndroidDeveloper);
+        TextView tv3 = findViewById(R.id.tvInfoContent);
+        TextView tvAppVersion = findViewById(R.id.tvAppVersion);
 
         tv1.setMovementMethod(LinkMovementMethod.getInstance());
         tv2.setMovementMethod(LinkMovementMethod.getInstance());
@@ -61,7 +61,7 @@ public class AboutActivity extends AppCompatActivity {
 
     @SuppressWarnings("ConstantConditions")
     private void initToolbar(int title, int subTitle) {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             toolbar.setTitle(title);
             toolbar.setSubtitle(subTitle);

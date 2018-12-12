@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
@@ -99,7 +100,7 @@ public class Fragment extends android.support.v4.app.Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         String planeNumber;
 
         View view = inflater.inflate(LAYOUT, container, false);
@@ -109,18 +110,19 @@ public class Fragment extends android.support.v4.app.Fragment {
         t.enableAdvertisingIdCollection(true);
 
         list = new ArrayList<>();
-        listView = (ListView) view.findViewById(R.id.listView);
-        textView = (TextView) view.findViewById(R.id.tvNoInternet);
-        btnRepeat = (Button) view.findViewById(R.id.btnRepeat);
-        btnClearEditText = (ImageButton) view.findViewById(R.id.btnClearEditText);
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.fragment_swipe_refresh);
-        editText = (EditText) view.findViewById(R.id.searchListView);
+        listView = view.findViewById(R.id.listView);
+        textView = view.findViewById(R.id.tvNoInternet);
+        btnRepeat = view.findViewById(R.id.btnRepeat);
+        btnClearEditText = view.findViewById(R.id.btnClearEditText);
+        swipeRefreshLayout = view.findViewById(R.id.fragment_swipe_refresh);
+        editText = view.findViewById(R.id.searchListView);
+        assert getArguments() != null;
         direction = getArguments().getString("direction");
         planeNumber = getArguments().getString("planeNumber");
         settings = getActivity().getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
         language = settings.getString(Constants.APP_PREFERENCES_LANGUAGE, "ru");
         activateBackground = settings.getBoolean(Constants.APP_PREFERENCES_ACTIVATE_BACKGROUND, false);
-        floatingActionsMenu = (FloatingActionsMenu) view.findViewById(R.id.fam);
+        floatingActionsMenu = view.findViewById(R.id.fam);
 
         clearEditTextListener();
         editTextListeners();
@@ -446,7 +448,7 @@ public class Fragment extends android.support.v4.app.Fragment {
         progressDialog.setCancelable(true);
         progressDialog.show();
 
-        String url = "http://rnd-airport.ru/1linetablo.card.5.19.php?0&0&"+direction;
+        String url = "http://old.rov.aero/1linetablo.card.5.19.php?0&0&"+direction;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
