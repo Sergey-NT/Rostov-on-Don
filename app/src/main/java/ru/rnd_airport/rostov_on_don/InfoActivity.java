@@ -55,7 +55,7 @@ public class InfoActivity extends AppCompatActivity {
 
         String subtitle = getString(R.string.menu_info_subtitle) + " "  + planeFlight + " " + planeDirection;
 
-        initToolbar(R.string.menu_info_title, subtitle);
+        initToolbar(subtitle);
 
         LinearLayout linearLayoutRoute = findViewById(R.id.linearLayoutRoute);
         CardView cardViewCombination = findViewById(R.id.cardViewCombination);
@@ -179,10 +179,10 @@ public class InfoActivity extends AppCompatActivity {
     }
 
     @SuppressWarnings("ConstantConditions")
-    private void initToolbar(int title, String subTitle) {
+    private void initToolbar(String subTitle) {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
-            toolbar.setTitle(title);
+            toolbar.setTitle(R.string.menu_info_title);
             toolbar.setSubtitle(subTitle);
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

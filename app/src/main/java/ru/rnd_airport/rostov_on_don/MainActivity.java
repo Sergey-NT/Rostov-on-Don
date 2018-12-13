@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             planeNumber = extras.getString("planeNumber");
         }
 
-        initToolbar(R.string.app_name);
+        initToolbar();
         initTabs();
         initNavigationDrawer();
 
@@ -123,10 +123,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initToolbar(int title) {
+    private void initToolbar() {
         toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
-            toolbar.setTitle(title);
+            toolbar.setTitle(R.string.app_name);
             setSupportActionBar(toolbar);
         }
     }
@@ -283,25 +283,25 @@ public class MainActivity extends AppCompatActivity {
                             case 1:
                                 drawerResultRight.closeDrawer();
                                 try {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getString(R.string.package_koltsovo))));
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getString(R.string.package_koltsovo) + "&" + getString(R.string.utm_campaign_market))));
                                 } catch (ActivityNotFoundException e) {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getString(R.string.package_koltsovo))));
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getString(R.string.package_koltsovo) + "&" + getString(R.string.utm_campaign_https))));
                                 }
                                 return true;
                             case 2:
                                 drawerResultRight.closeDrawer();
                                 try {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getString(R.string.package_kurumoch))));
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getString(R.string.package_kurumoch) + "&" + getString(R.string.utm_campaign_market))));
                                 } catch (ActivityNotFoundException e) {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getString(R.string.package_kurumoch))));
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getString(R.string.package_kurumoch)  + "&" + getString(R.string.utm_campaign_https))));
                                 }
                                 return true;
                             case 3:
                                 drawerResultRight.closeDrawer();
                                 try {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getString(R.string.package_strigino))));
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getString(R.string.package_strigino) + "&" + getString(R.string.utm_campaign_market))));
                                 } catch (ActivityNotFoundException e) {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getString(R.string.package_strigino))));
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getString(R.string.package_strigino)  + "&" + getString(R.string.utm_campaign_https))));
                                 }
                                 return true;
                         }
@@ -448,7 +448,7 @@ public class MainActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq);
     }
 
-    private boolean checkPlayServices() {
+    private void checkPlayServices() {
         GoogleApiAvailability api = GoogleApiAvailability.getInstance();
         int resultCode = api.isGooglePlayServicesAvailable(this);
         if (resultCode != ConnectionResult.SUCCESS) {
@@ -460,8 +460,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 finish();
             }
-            return false;
         }
-        return true;
     }
 }

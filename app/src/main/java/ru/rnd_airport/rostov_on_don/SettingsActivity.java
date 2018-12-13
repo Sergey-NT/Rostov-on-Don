@@ -59,7 +59,7 @@ public class SettingsActivity extends AppCompatActivity implements BillingProces
         Tracker t = ((AppController) getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
         t.enableAdvertisingIdCollection(true);
 
-        initToolbar(R.string.app_name, R.string.menu_settings);
+        initToolbar();
 
         btnAdsDisable = findViewById(R.id.btnAdsDisable);
         Button btnLanguage = findViewById(R.id.btnLanguage);
@@ -115,11 +115,11 @@ public class SettingsActivity extends AppCompatActivity implements BillingProces
     }
 
     @SuppressWarnings("ConstantConditions")
-    private void initToolbar(int title, int subTitle) {
+    private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
-            toolbar.setTitle(title);
-            toolbar.setSubtitle(subTitle);
+            toolbar.setTitle(R.string.app_name);
+            toolbar.setSubtitle(R.string.menu_settings);
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);

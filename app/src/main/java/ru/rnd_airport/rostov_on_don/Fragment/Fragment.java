@@ -1,5 +1,6 @@
 package ru.rnd_airport.rostov_on_don.Fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -100,14 +101,16 @@ public class Fragment extends android.support.v4.app.Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         String planeNumber;
 
         View view = inflater.inflate(LAYOUT, container, false);
 
         // Google Analytics
-        Tracker t = ((AppController) getActivity().getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
-        t.enableAdvertisingIdCollection(true);
+        if (getActivity() != null) {
+            Tracker t = ((AppController) getActivity().getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
+            t.enableAdvertisingIdCollection(true);
+        }
 
         list = new ArrayList<>();
         listView = view.findViewById(R.id.listView);
@@ -142,11 +145,13 @@ public class Fragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 // Google Analytics
-                Tracker t = ((AppController) getActivity().getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
-                t.send(new HitBuilders.EventBuilder()
-                        .setCategory(getString(R.string.analytics_category_button))
-                        .setAction(getString(R.string.analytics_action_clear_text))
-                        .build());
+                if (getActivity() != null) {
+                    Tracker t = ((AppController) getActivity().getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
+                    t.send(new HitBuilders.EventBuilder()
+                            .setCategory(getString(R.string.analytics_category_button))
+                            .setAction(getString(R.string.analytics_action_clear_text))
+                            .build());
+                }
 
                 editText.setText("");
                 hideSoftKeyboard();
@@ -201,11 +206,13 @@ public class Fragment extends android.support.v4.app.Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Google Analytics
-                Tracker t = ((AppController) getActivity().getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
-                t.send(new HitBuilders.EventBuilder()
-                        .setCategory(getString(R.string.analytics_category_button))
-                        .setAction(getString(R.string.analytics_action_plane_info))
-                        .build());
+                if (getActivity() != null) {
+                    Tracker t = ((AppController) getActivity().getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
+                    t.send(new HitBuilders.EventBuilder()
+                            .setCategory(getString(R.string.analytics_category_button))
+                            .setAction(getString(R.string.analytics_action_plane_info))
+                            .build());
+                }
 
                 RelativeLayout rl = (RelativeLayout) view;
                 TextView tvPlaneFlight = (TextView) rl.getChildAt(0);
@@ -229,11 +236,13 @@ public class Fragment extends android.support.v4.app.Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 // Google Analytics
-                Tracker t = ((AppController) getActivity().getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
-                t.send(new HitBuilders.EventBuilder()
-                        .setCategory(getString(R.string.analytics_category_button))
-                        .setAction(getString(R.string.analytics_action_plane_tacking))
-                        .build());
+                if (getActivity() != null) {
+                    Tracker t = ((AppController) getActivity().getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
+                    t.send(new HitBuilders.EventBuilder()
+                            .setCategory(getString(R.string.analytics_category_button))
+                            .setAction(getString(R.string.analytics_action_plane_tacking))
+                            .build());
+                }
 
                 RelativeLayout rl = (RelativeLayout) view;
                 TextView tvPlaneFlight = (TextView) rl.getChildAt(0);
@@ -248,8 +257,11 @@ public class Fragment extends android.support.v4.app.Fragment {
                 String planeTimeFact = tvPlaneTimeFact.getText().toString();
                 String planeStatus = tvPlaneStatus.getText().toString().substring(0,1) + tvPlaneStatus.getText().toString().substring(1).toLowerCase();
 
+
                 Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(50);
+                if (vibrator != null) {
+                    vibrator.vibrate(50);
+                }
 
                 switch (planeStatus) {
                     case "Прибыл":
@@ -395,8 +407,12 @@ public class Fragment extends android.support.v4.app.Fragment {
     }
 
     private void hideSoftKeyboard () {
-        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+        if (getActivity() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+            if (inputMethodManager != null) {
+                inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+            }
+        }
         editText.clearFocus();
     }
 
@@ -406,11 +422,13 @@ public class Fragment extends android.support.v4.app.Fragment {
             @Override
             public void onRefresh() {
                 // Google Analytics
-                Tracker t = ((AppController) getActivity().getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
-                t.send(new HitBuilders.EventBuilder()
-                        .setCategory(getString(R.string.analytics_category_button))
-                        .setAction(getString(R.string.analytics_action_refresh))
-                        .build());
+                if (getActivity() != null) {
+                    Tracker t = ((AppController) getActivity().getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
+                    t.send(new HitBuilders.EventBuilder()
+                            .setCategory(getString(R.string.analytics_category_button))
+                            .setAction(getString(R.string.analytics_action_refresh))
+                            .build());
+                }
 
                 uploadListView();
                 progressDialogDismiss();
@@ -521,6 +539,7 @@ public class Fragment extends android.support.v4.app.Fragment {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class parsingXML extends AsyncTask<String, Void, List<ObjectPlane>> {
         @Override
         protected List<ObjectPlane> doInBackground(String... params) {
@@ -726,7 +745,7 @@ public class Fragment extends android.support.v4.app.Fragment {
                 return;
             }
 
-            if (list == null || list.size() == 0) {
+            if ((list == null || list.size() == 0) && getActivity() != null) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -735,7 +754,7 @@ public class Fragment extends android.support.v4.app.Fragment {
                     }
                 });
             } else {
-                if (adapter == null) {
+                if (adapter == null && getActivity() != null) {
                     adapter = new ObjectPlaneAdapter(getActivity().getApplicationContext(), list);
                     listView.setAdapter(adapter);
                     adapter.getFilter().filter(editText.getText().toString());
@@ -756,35 +775,45 @@ public class Fragment extends android.support.v4.app.Fragment {
     private void addFilterButtons() {
         final String[] unique = new HashSet<>(dates).toArray(new String[0]);
         Arrays.sort(unique);
-        for (final String title : unique) {
-            final FloatingActionButton fab = new FloatingActionButton(getActivity().getApplication());
-            fab.setColorNormalResId(R.color.colorPrimaryGreen);
-            fab.setColorPressedResId(R.color.colorPrimaryDarkGreen);
-            fab.setTitle(title);
+        if (getActivity() != null) {
+            for (final String title : unique) {
+                final FloatingActionButton fab = new FloatingActionButton(getActivity().getApplication());
+                fab.setColorNormalResId(R.color.colorPrimaryGreen);
+                fab.setColorPressedResId(R.color.colorPrimaryDarkGreen);
+                fab.setTitle(title);
 
-            fab.setIconDrawable(new IconicsDrawable(getActivity().getApplication())
-                    .icon(GoogleMaterial.Icon.gmd_date_range)
-                    .color(Color.WHITE)
-                    .sizeDp(24));
-            floatingActionsMenu.addButton(fab);
+                fab.setIconDrawable(new IconicsDrawable(getActivity().getApplication())
+                        .icon(GoogleMaterial.Icon.gmd_date_range)
+                        .color(Color.WHITE)
+                        .sizeDp(24));
+                floatingActionsMenu.addButton(fab);
 
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    showToast(fab.getTitle());
-                    if (adapter != null) {
-                        editText.setText(title);
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        showToast(fab.getTitle());
+                        if (adapter != null) {
+                            editText.setText(title);
+                        }
+                        floatingActionsMenu.collapse();
                     }
-                    floatingActionsMenu.collapse();
-                }
-            });
+                });
+            }
         }
     }
 
     private boolean isOnline() {
-        ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
+        if (getActivity() != null) {
+            ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (cm != null) {
+                NetworkInfo netInfo = cm.getActiveNetworkInfo();
+                return netInfo != null && netInfo.isConnectedOrConnecting();
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     private void setErrorTextAndButton(){
@@ -799,7 +828,7 @@ public class Fragment extends android.support.v4.app.Fragment {
         btnRepeat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isOnline()) {
+                if (isOnline() && getActivity() != null) {
                     // Google Analytics
                     Tracker t = ((AppController) getActivity().getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
                     t.send(new HitBuilders.EventBuilder()
@@ -817,7 +846,9 @@ public class Fragment extends android.support.v4.app.Fragment {
     }
 
     private void showToast(String message) {
-        Toast.makeText(getActivity().getApplication(), message, Toast.LENGTH_SHORT).show();
+        if (getActivity() !=  null) {
+            Toast.makeText(getActivity().getApplication(), message, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

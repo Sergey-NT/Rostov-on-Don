@@ -25,13 +25,21 @@
 
         <service android:name="ru.rnd_airport.rostov_on_don.gcm.AppFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
         <service android:name="com.google.android.gms.analytics.AnalyticsService"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false" />
+
+        <!-- Used for Google Play Store Campaign Measurement-->
+        <receiver android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name=".MainActivity"
@@ -72,6 +80,9 @@
             android:launchMode="singleTask" >
         </activity>
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="ed54e29666126090d0b88f40462b6d1d8587916f" />
     </application>
 
 </manifest>

@@ -10,16 +10,14 @@ import android.os.Build;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
-import org.acra.ACRA;
-import org.acra.annotation.ReportsCrashes;
+import io.fabric.sdk.android.Fabric;
 
 import java.util.HashMap;
 import java.util.Locale;
-
-@ReportsCrashes(formUri = "http://www.avtovokzal.org/php/app_rostov/log/log.php")
 
 public class AppController extends Application {
 
@@ -60,9 +58,9 @@ public class AppController extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         mInstance = this;
 
-        ACRA.init(this);
         FixNoClassDefFoundError81083();
         setLocale();
     }

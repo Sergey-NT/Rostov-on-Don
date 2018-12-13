@@ -36,7 +36,7 @@ public class AboutActivity extends AppCompatActivity {
         Tracker t = ((AppController) getApplication()).getTracker(AppController.TrackerName.APP_TRACKER);
         t.enableAdvertisingIdCollection(true);
 
-        initToolbar(R.string.app_name, R.string.menu_about);
+        initToolbar();
 
         TextView tv1 = findViewById(R.id.tvIconsInfo);
         TextView tv2 = findViewById(R.id.tvAndroidDeveloper);
@@ -60,11 +60,11 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     @SuppressWarnings("ConstantConditions")
-    private void initToolbar(int title, int subTitle) {
+    private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
-            toolbar.setTitle(title);
-            toolbar.setSubtitle(subTitle);
+            toolbar.setTitle(R.string.app_name);
+            toolbar.setSubtitle(R.string.menu_about);
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
