@@ -281,6 +281,10 @@ public class SettingsActivity extends AppCompatActivity implements BillingProces
         dialogFragment.show(manager, "dialog");
     }
 
+    public void btnPrivacyPolicyOnClick (View view) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.avtovokzal.org/privacy_policy/platov.html")));
+    }
+
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }

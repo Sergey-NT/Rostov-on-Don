@@ -72,6 +72,7 @@
     <string name="toast_token">Произошла ошибка при регистрации отслеживания</string>
     <string name="check_box_language_ru" translatable="false">Русский</string>
     <string name="check_box_language_en" translatable="false">English</string>
+    <string name="button_privacy_policy">Политика конфиденциальности</string>
     <string name="button_feedback">Оставить отзыв</string>
     <string name="button_license">Лицензии открытого ПО</string>
     <string name="button_language">Язык:</string>
