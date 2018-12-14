@@ -17,8 +17,8 @@ android {
         applicationId "ru.rnd_airport.rostov_on_don"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 13
-        versionName "1.0.9"
+        versionCode 14
+        versionName "1.0.10"
     }
     buildTypes {
         release {

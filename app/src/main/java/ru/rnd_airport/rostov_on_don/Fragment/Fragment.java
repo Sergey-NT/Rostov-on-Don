@@ -870,5 +870,9 @@ public class Fragment extends android.support.v4.app.Fragment {
             activateBackground = settings.getBoolean(Constants.APP_PREFERENCES_ACTIVATE_BACKGROUND, false);
             adapter.notifyDataSetChanged();
         }
+        if (adapter != null) {
+            uploadListView();
+            progressDialogDismiss();
+        }
     }
 }
