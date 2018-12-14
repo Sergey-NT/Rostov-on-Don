@@ -1,9 +1,11 @@
 package ru.rnd_airport.rostov_on_don;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -85,6 +87,16 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences settings = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(Constants.APP_PREFERENCES_UPDATE_LIST_FLAG, false);
+        editor.apply();
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         GoogleAnalytics.getInstance(this).reportActivityStop(this);
@@ -102,5 +114,9 @@ public class AboutActivity extends AppCompatActivity {
                 .setNotices(R.raw.notices)
                 .build()
                 .showAppCompat();
+    }
+
+    public void btnPrivacyPolicyOnClick (View view) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.avtovokzal.org/privacy_policy/platov.html")));
     }
 }

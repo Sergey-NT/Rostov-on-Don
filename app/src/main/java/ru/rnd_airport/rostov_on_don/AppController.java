@@ -25,6 +25,7 @@ public class AppController extends Application {
 
     private RequestQueue mRequestQueue;
     private Locale locale = null;
+    private SharedPreferences settings;
 
     private static AppController mInstance;
 
@@ -61,12 +62,16 @@ public class AppController extends Application {
         Fabric.with(this, new Crashlytics());
         mInstance = this;
 
+        settings = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(Constants.APP_PREFERENCES_UPDATE_LIST_FLAG, false);
+        editor.apply();
+
         FixNoClassDefFoundError81083();
         setLocale();
     }
 
     private void setLocale() {
-        SharedPreferences settings = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
         String language = settings.getString(Constants.APP_PREFERENCES_LANGUAGE, "ru");
 
         locale = new Locale(language);

@@ -9,6 +9,7 @@ public class Constants {
     public static final String APP_PREFERENCES_LANGUAGE = "app_language";
     public static final String APP_PREFERENCES_APP_THEME = "app_theme";
     public static final String APP_PREFERENCES_ACTIVATE_BACKGROUND = "activate_background";
+    public static final String APP_PREFERENCES_UPDATE_LIST_FLAG = "update_list_flag";
     static final int TAB_ONE = 0;
     static final int TAB_TWO = 1;
     static final String REGISTRATION_COMPLETE = "registrationComplete";

@@ -169,6 +169,15 @@ public class SettingsActivity extends AppCompatActivity implements BillingProces
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(Constants.APP_PREFERENCES_UPDATE_LIST_FLAG, false);
+        editor.apply();
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         GoogleAnalytics.getInstance(this).reportActivityStop(this);
@@ -279,10 +288,6 @@ public class SettingsActivity extends AppCompatActivity implements BillingProces
         FragmentManager manager = getSupportFragmentManager();
         ThemeDialogFragment dialogFragment = new ThemeDialogFragment();
         dialogFragment.show(manager, "dialog");
-    }
-
-    public void btnPrivacyPolicyOnClick (View view) {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.avtovokzal.org/privacy_policy/platov.html")));
     }
 
     private void showToast(String message) {

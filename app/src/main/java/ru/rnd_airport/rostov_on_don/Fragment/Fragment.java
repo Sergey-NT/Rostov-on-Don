@@ -854,6 +854,10 @@ public class Fragment extends android.support.v4.app.Fragment {
     @Override
     public void onPause() {
         super.onPause();
+
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(Constants.APP_PREFERENCES_UPDATE_LIST_FLAG, true);
+        editor.apply();
         progressDialogDismiss();
     }
 
@@ -870,7 +874,7 @@ public class Fragment extends android.support.v4.app.Fragment {
             activateBackground = settings.getBoolean(Constants.APP_PREFERENCES_ACTIVATE_BACKGROUND, false);
             adapter.notifyDataSetChanged();
         }
-        if (adapter != null) {
+        if (adapter != null && settings.getBoolean(Constants.APP_PREFERENCES_UPDATE_LIST_FLAG, false)) {
             uploadListView();
             progressDialogDismiss();
         }
