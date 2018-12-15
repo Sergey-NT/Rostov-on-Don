@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Платов</string>
     <string name="tabs_item_arrival">Прибытие</string>
     <string name="tabs_item_departure">Отправление</string>
@@ -102,4 +102,6 @@
     <string name="package_strigino" translatable="false">ru.airportnn.www.strigino</string>
     <string name="utm_campaign_market" translatable="false">referrer=utm_source%3Dplatov%26utm_medium%3Dandroid%26utm_campaign%3Dmarket</string>
     <string name="utm_campaign_https" translatable="false">referrer=utm_source%3Dplatov%26utm_medium%3Dandroid%26utm_campaign%3Dhttps</string>
+    <string name="channel_name">Push уведомления</string>
+    <string name="channel_description">Канал для получения Push уведомлений об изменениях статусов отслеживаемых рейсов</string>
 </resources>

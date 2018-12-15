@@ -2,9 +2,15 @@ package ru.rnd_airport.rostov_on_don;
 
 import android.annotation.TargetApi;
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.media.AudioAttributes;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 
 import com.android.volley.Request;
@@ -22,6 +28,7 @@ import java.util.Locale;
 public class AppController extends Application {
 
     public static final String TAG = AppController.class.getSimpleName();
+    public static final String CHANNEL_ID = "PLATOV";
 
     private RequestQueue mRequestQueue;
     private Locale locale = null;
@@ -69,6 +76,35 @@ public class AppController extends Application {
 
         FixNoClassDefFoundError81083();
         setLocale();
+
+        if (!settings.getBoolean(Constants.APP_PREFERENCES_CHANNEL_CREATE_FLAG, false)) {
+            editor.putBoolean(Constants.APP_PREFERENCES_CHANNEL_CREATE_FLAG, true);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                CharSequence name = getString(R.string.channel_name);
+                String description = getString(R.string.channel_description);
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+
+                Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+                AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                        .setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE).build();
+
+                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+                channel.setDescription(description);
+                channel.enableLights(true);
+                channel.setLightColor(Color.GREEN);
+                channel.enableVibration(true);
+                channel.setSound(defaultSoundUri, audioAttributes);
+                // Register the channel with the system; you can't change the importance
+                // or other notification behaviors after this
+                NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                if (notificationManager != null) {
+                    notificationManager.createNotificationChannel(channel);
+                }
+            }
+        }
     }
 
     private void setLocale() {
