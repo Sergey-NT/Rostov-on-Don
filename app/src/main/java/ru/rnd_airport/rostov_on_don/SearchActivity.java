@@ -33,7 +33,7 @@ public class SearchActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        AviasalesSDK.getInstance().init(this, new SdkConfig(TRAVEL_PAYOUTS_MARKER, TRAVEL_PAYOUTS_TOKEN,SDK_HOST));
+        AviasalesSDK.getInstance().init(this, new SdkConfig(TRAVEL_PAYOUTS_MARKER, TRAVEL_PAYOUTS_TOKEN, SDK_HOST));
         setContentView(LAYOUT);
 
         // Google Analytics

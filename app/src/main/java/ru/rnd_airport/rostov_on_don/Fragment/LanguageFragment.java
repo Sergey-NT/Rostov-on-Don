@@ -21,8 +21,8 @@ public class LanguageFragment extends DialogFragment {
 
         int position;
 
-        final CharSequence[] items = {getActivity().getResources().getString(R.string.check_box_language_ru), getActivity().getResources().getString(R.string.check_box_language_en)};
-        final SharedPreferences settings = getActivity().getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
+        final CharSequence[] items = {requireActivity().getResources().getString(R.string.check_box_language_ru), requireActivity().getResources().getString(R.string.check_box_language_en)};
+        final SharedPreferences settings = requireActivity().getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = settings.edit();
         String language = settings.getString(Constants.APP_PREFERENCES_LANGUAGE, "ru");
 
@@ -32,7 +32,7 @@ public class LanguageFragment extends DialogFragment {
             position = 1;
         }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         builder.setTitle(getString(R.string.dialog_title_language))
                 .setSingleChoiceItems(items, position, new DialogInterface.OnClickListener() {
                     @Override
