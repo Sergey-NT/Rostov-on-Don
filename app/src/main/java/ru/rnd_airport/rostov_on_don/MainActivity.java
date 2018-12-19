@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
@@ -40,6 +41,7 @@ import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int APP_THEME = R.style.AppDefault;
     private static final String TAG = "MainActivity";
     private static final String REQUEST_VERSION_APP_URL = "https://www.avtovokzal.org/php/app_rostov/requestVersionCode.php";
-    private static final String SHARE_URL = "https://play.google.com/store/apps/details?id=ru.rnd_airport.rostov_on_don";
+    private static final String SHARE_URL = "https://play.google.com/store/apps/details?id=ru.rnd_airport.rostov_on_don&referrer=utm_source%3Dplatov%26utm_medium%3Dandroid%26utm_campaign%3Dshare";
 
     private Toolbar toolbar;
     private ViewPager viewPager;
@@ -143,7 +145,16 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.share_menu, menu);
         MenuItem item = menu.findItem(R.id.menu_item_share);
 
-        ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+        ShareActionProvider shareActionProvider = new ShareActionProvider(this) {
+            @Override
+            public View onCreateActionView() {
+                return null;
+            }
+        };
+
+        item.setIcon(new IconicsDrawable(this, "gmd_share").actionBar().color(Color.WHITE));
+
+        MenuItemCompat.setActionProvider(item, shareActionProvider);
 
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
