@@ -1,7 +1,6 @@
 package ru.rnd_airport.rostov_on_don;
 
 import android.annotation.TargetApi;
-import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -21,12 +20,13 @@ import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
+import androidx.multidex.MultiDexApplication;
 import io.fabric.sdk.android.Fabric;
 
 import java.util.HashMap;
 import java.util.Locale;
 
-public class AppController extends Application {
+public class AppController extends MultiDexApplication {
 
     public static final String TAG = AppController.class.getSimpleName();
     public static final String CHANNEL_ID = "PLATOV";
