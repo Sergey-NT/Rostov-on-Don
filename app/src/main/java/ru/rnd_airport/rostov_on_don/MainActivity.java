@@ -10,14 +10,19 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.tabs.TabLayout;
+
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -55,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final int APP_THEME = R.style.AppDefault;
     private static final String TAG = "MainActivity";
+    private static final String REQUEST_VERSION_APP_URL = "https://www.avtovokzal.org/php/app_rostov/requestVersionCode.php";
+    private static final String SHARE_URL = "https://play.google.com/store/apps/details?id=ru.rnd_airport.rostov_on_don";
 
     private Toolbar toolbar;
     private ViewPager viewPager;
@@ -129,6 +136,22 @@ public class MainActivity extends AppCompatActivity {
             toolbar.setTitle(R.string.app_name);
             setSupportActionBar(toolbar);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.share_menu, menu);
+        MenuItem item = menu.findItem(R.id.menu_item_share);
+
+        ShareActionProvider myShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+
+        Intent myShareIntent = new Intent(Intent.ACTION_SEND);
+        myShareIntent.setType("text/plain");
+        myShareIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
+        myShareIntent.putExtra(Intent.EXTRA_TEXT, SHARE_URL);
+        myShareActionProvider.setShareIntent(myShareIntent);
+
+        return true;
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -418,9 +441,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getVersionFromGooglePlay() {
-        String url = "http://www.avtovokzal.org/php/app_rostov/requestVersionCode.php";
-
-        StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, REQUEST_VERSION_APP_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (response != null) {

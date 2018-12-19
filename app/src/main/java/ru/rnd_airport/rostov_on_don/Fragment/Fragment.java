@@ -13,9 +13,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -68,10 +68,15 @@ import ru.rnd_airport.rostov_on_don.InfoActivity;
 import ru.rnd_airport.rostov_on_don.ObjectPlane;
 import ru.rnd_airport.rostov_on_don.R;
 
-public class Fragment extends android.support.v4.app.Fragment {
+public class Fragment extends androidx.fragment.app.Fragment {
 
     private static final int LAYOUT = R.layout.fragment;
     private static final String TAG = "Fragment";
+    private static final String DELETE_QUERY_URL = "https://www.avtovokzal.org/php/app_rostov/deleteQuery.php?token=";
+    private static final String SEND_QUERY_URL = "https://www.avtovokzal.org/php/app_rostov/query.php?token=";
+    private static final String GET_XML_URL = "https://old.rov.aero/1linetablo.card.5.19.php?0&0&";
+    private static final String GET_QUERY_URL = "https://www.avtovokzal.org/php/app_rostov/requestQuery.php?token=";
+    private static final Integer RESPONSE_SUBSTRING = 81;
 
     private List<ObjectPlane> list;
     private ListView listView;
@@ -350,7 +355,7 @@ public class Fragment extends android.support.v4.app.Fragment {
     private void sendDeleteQueryToDb(String... params) {
         String token = params[0];
         String timePlane = Uri.encode(params[3]);
-        String url = "http://www.avtovokzal.org/php/app_rostov/deleteQuery.php?token="+token+"&direction="+params[1]+"&flight="+params[2]+"&time_plan="+timePlane;
+        String url = DELETE_QUERY_URL + token + "&direction=" + params[1] + "&flight=" + params[2] + "&time_plan=" + timePlane;
 
         if (token.length() > 0) {
             StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -378,7 +383,7 @@ public class Fragment extends android.support.v4.app.Fragment {
         String timeFact = Uri.encode(params[5]);
         String status = Uri.encode(params[6]);
         if (token.length() > 0) {
-            String url = "http://www.avtovokzal.org/php/app_rostov/query.php?token=" + token + "&direction=" + params[1] + "&flight=" + params[2] + "&plane_direction=" + planeDirection + "&time_plan=" + timePlane + "&time_fact=" + timeFact + "&status=" + status + "&language=" + language;
+            String url = SEND_QUERY_URL + token + "&direction=" + params[1] + "&flight=" + params[2] + "&plane_direction=" + planeDirection + "&time_plan=" + timePlane + "&time_fact=" + timeFact + "&status=" + status + "&language=" + language;
 
             StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
@@ -454,13 +459,13 @@ public class Fragment extends android.support.v4.app.Fragment {
         progressDialog.setCancelable(true);
         progressDialog.show();
 
-        String url = "http://old.rov.aero/1linetablo.card.5.19.php?0&0&"+direction;
+        String url = GET_XML_URL + direction;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (response != null) {
-                    response = response.substring(81);
+                    response = response.substring(RESPONSE_SUBSTRING);
                     response = response.replace("</teaxtarea>","");
                     parsingXML task = new parsingXML();
                     task.execute(response, direction);
@@ -487,7 +492,7 @@ public class Fragment extends android.support.v4.app.Fragment {
         String token = settings.getString(Constants.APP_TOKEN, "");
 
         if (token.length() > 0) {
-            String url = "http://www.avtovokzal.org/php/app_rostov/requestQuery.php?token="+token;
+            String url = GET_QUERY_URL + token;
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
