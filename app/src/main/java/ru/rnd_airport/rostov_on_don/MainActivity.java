@@ -143,13 +143,13 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.share_menu, menu);
         MenuItem item = menu.findItem(R.id.menu_item_share);
 
-        ShareActionProvider myShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+        ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
 
-        Intent myShareIntent = new Intent(Intent.ACTION_SEND);
-        myShareIntent.setType("text/plain");
-        myShareIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
-        myShareIntent.putExtra(Intent.EXTRA_TEXT, SHARE_URL);
-        myShareActionProvider.setShareIntent(myShareIntent);
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, SHARE_URL);
+        shareActionProvider.setShareIntent(shareIntent);
 
         return true;
     }

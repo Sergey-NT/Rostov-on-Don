@@ -74,7 +74,7 @@ public class Fragment extends androidx.fragment.app.Fragment {
     private static final String TAG = "Fragment";
     private static final String DELETE_QUERY_URL = "https://www.avtovokzal.org/php/app_rostov/deleteQuery.php?token=";
     private static final String SEND_QUERY_URL = "https://www.avtovokzal.org/php/app_rostov/query.php?token=";
-    private static final String GET_XML_URL = "https://old.rov.aero/1linetablo.card.5.19.php?0&0&";
+    private static final String GET_XML_URL = "http://old.rov.aero/1linetablo.card.5.19.php?0&0&";
     private static final String GET_QUERY_URL = "https://www.avtovokzal.org/php/app_rostov/requestQuery.php?token=";
     private static final Integer RESPONSE_SUBSTRING = 81;
 
