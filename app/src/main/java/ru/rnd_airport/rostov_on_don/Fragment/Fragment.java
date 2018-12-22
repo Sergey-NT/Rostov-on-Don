@@ -754,6 +754,7 @@ public class Fragment extends androidx.fragment.app.Fragment {
                     getQueryFromServer();
                 } else {
                     adapter.notifyDataSetChanged();
+                    adapter.getFilter().filter(editText.getText().toString());
                     getQueryFromServer();
                 }
             }

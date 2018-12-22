@@ -1,6 +1,7 @@
 package ru.rnd_airport.rostov_on_don;
 
 import android.annotation.TargetApi;
+import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -20,13 +21,13 @@ import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
-import androidx.multidex.MultiDexApplication;
+import androidx.multidex.MultiDex;
 import io.fabric.sdk.android.Fabric;
 
 import java.util.HashMap;
 import java.util.Locale;
 
-public class AppController extends MultiDexApplication {
+public class AppController extends Application {
 
     public static final String TAG = AppController.class.getSimpleName();
     public static final String CHANNEL_ID = "PLATOV";
@@ -108,11 +109,17 @@ public class AppController extends MultiDexApplication {
         }
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
     private void configureCrashReporting() {
         CrashlyticsCore crashlyticsCore = new CrashlyticsCore.Builder()
                 .disabled(BuildConfig.DEBUG)
                 .build();
-        Fabric.with(this, new Crashlytics.Builder().core(crashlyticsCore).build());
+        Fabric.with(this, new Crashlytics.Builder().core(crashlyticsCore).build(), new Crashlytics());
     }
 
     private void setLocale() {
