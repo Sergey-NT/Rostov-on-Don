@@ -16,8 +16,8 @@ android {
         applicationId "ru.rnd_airport.rostov_on_don"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 23
-        versionName "1.1.4"
+        versionCode 24
+        versionName "1.1.5"
         multiDexEnabled true
     }
     buildTypes {
@@ -38,7 +38,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
     implementation "androidx.recyclerview:recyclerview:1.1.0-alpha01"
     implementation "androidx.annotation:annotation:1.0.1"
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha2"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha3"
     implementation 'androidx.browser:browser:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.multidex:multidex:2.0.1'

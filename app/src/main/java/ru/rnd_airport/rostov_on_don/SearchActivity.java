@@ -19,7 +19,6 @@ import ru.aviasales.template.ui.fragment.AviasalesFragment;
 public class SearchActivity extends AppCompatActivity {
 
     private static final int LAYOUT = R.layout.activity_search;
-    private static final int APP_THEME = R.style.AppDefault;
     private final static String TRAVEL_PAYOUTS_MARKER = "64818";
     private final static String TRAVEL_PAYOUTS_TOKEN = "56006c981e1ebbcff3430c6ef2519b1f";
     private final static String SDK_HOST = "www.travel-api.pw";
@@ -28,7 +27,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences settings = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
-        int appTheme = settings.getInt(Constants.APP_PREFERENCES_APP_THEME, APP_THEME);
+        int appTheme = settings.getInt(Constants.APP_PREFERENCES_APP_THEME, Constants.APP_THEME);
         setTheme(appTheme);
 
         super.onCreate(savedInstanceState);
